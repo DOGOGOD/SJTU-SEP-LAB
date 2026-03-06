@@ -6,10 +6,10 @@ This is a collection of labs for the Software Engineering Practice (SEP) course 
 
 ```
 SEP/
-©À©¤ README.md
-©À©¤ Lab/
-©¦  ©¸©¤ lab1/  # Lab1: student/course score manager.          
-©¸©¤ Lab Init/
+â”œâ”€ README.md
+â”œâ”€ Lab/
+â”‚  â””â”€ lab1/  # Lab1: student/course score manager.          
+â””â”€ Lab Init/
 ```
 
 
