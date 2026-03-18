@@ -1,0 +1,7 @@
+                                     |  # test irmovq
+0x000: 30 f9 7b 00 00 00 00 00 00 00 |  	irmovq $123, %r9
+0x00a: 30 fd 85 ff ff ff ff ff ff ff |  	irmovq $-123, %r13
+0x014: 30 f0 df 15 00 00 00 00 00 00 |  	irmovq $0x15df, %rax
+0x01e: 30 fa 21 ea ff ff ff ff ff ff |  	irmovq $-0x15df, %r10
+0x028: 00                            |  	halt
+                                     |  # end

@@ -1,0 +1,6 @@
+                                     |  # Test of Pop semantics for Y86
+0x000: 30 f4 00 01 00 00 00 00 00 00 |  	irmovq $0x100,%rsp  # Initialize stack pointer
+0x00a: 30 f0 cd ab 00 00 00 00 00 00 |  	irmovq $0xABCD,%rax
+0x014: a0 0f                         |  	pushq  %rax         # Put known value on stack
+0x016: b0 4f                         |  	popq   %rsp         # Either get 0xABCD, or 0xfc
+0x018: 00                            |  	halt

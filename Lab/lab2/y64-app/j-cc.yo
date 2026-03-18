@@ -1,0 +1,15 @@
+0x000: 30 f6 01 00 00 00 00 00 00 00 |  	      irmovq $1, %rsi
+0x00a: 30 f7 02 00 00 00 00 00 00 00 |  	      irmovq $2, %rdi
+0x014: 30 f5 04 00 00 00 00 00 00 00 |  	      irmovq $4, %rbp
+0x01e: 30 f0 e0 ff ff ff ff ff ff ff |  	      irmovq $-32, %rax
+0x028: 30 f2 40 00 00 00 00 00 00 00 |  	      irmovq $64, %rdx
+0x032: 61 20                         |  	      subq %rdx,%rax
+0x034: 73 3f 00 00 00 00 00 00 00    |  	      je target
+0x03d: 10                            |  	      nop
+0x03e: 00                            |                halt
+0x03f:                               |  target:
+0x03f: 60 62                         |  	      addq %rsi,%rdx
+0x041: 10                            |  	      nop
+0x042: 10                            |                nop
+0x043: 10                            |                nop
+0x044: 00                            |  	      halt

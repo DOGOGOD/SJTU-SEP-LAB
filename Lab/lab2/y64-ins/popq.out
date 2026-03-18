@@ -1,0 +1,6 @@
+Stopped in 2 steps at PC = 0x2.  Status 'HLT', CC Z=1 S=0 O=0
+Changes to registers:
+%rsp:	0x0000000000000000	0x0000000000000008
+%rbp:	0x0000000000000000	0x0000000000005fb0
+
+Changes to memory:

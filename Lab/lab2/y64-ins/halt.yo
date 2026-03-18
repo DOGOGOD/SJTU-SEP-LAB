@@ -1,0 +1,3 @@
+                                     |  # halt immrdiately
+0x000: 00                            |  	halt			# Terminate program
+                                     |  # end

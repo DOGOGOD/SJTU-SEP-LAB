@@ -1,0 +1,14 @@
+                                     |  # Demonstration of return
+                                     |  # /* $begin prog7-ys */
+                                     |  # prog7
+0x000: 30 f4 80 00 00 00 00 00 00 00 |     irmovq Stack,%rsp  # Initialize stack pointer
+0x00a: 80 40 00 00 00 00 00 00 00    |     call Proc          # procedure call
+0x013: 30 f2 0a 00 00 00 00 00 00 00 |     irmovq $10,%rdx    # return point
+0x01d: 00                            |     halt
+0x040:                               |  .pos 0x40
+0x040:                               |  Proc:                 # Proc:
+0x040: 90                            |     ret                # return immrdiately
+0x041: 20 23                         |     rrmovq %rdx,%rbx   # not executed
+0x080:                               |  .pos 0x80
+0x080:                               |  Stack:                # Stack: Stack pointer
+                                     |  # /* $end prog7-ys */

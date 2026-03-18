@@ -1,0 +1,5 @@
+                                     |  # test jle
+0x000:                               |  Loop:
+0x000: 71 00 00 00 00 00 00 00 00    |  	jle Loop
+0x009: 00                            |  	halt
+                                     |  # end

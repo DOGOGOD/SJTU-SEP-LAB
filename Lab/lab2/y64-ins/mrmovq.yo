@@ -1,0 +1,6 @@
+                                     |  # test mrmovq
+0x000: 50 04 fe ff ff ff ff ff ff ff |  	mrmovq -2(%rsp), %rax
+0x00a: 50 63 00 00 00 00 00 00 00 00 |  	mrmovq (%rbx), %rsi
+0x014: 50 15 08 00 00 00 00 00 00 00 |  	mrmovq 8(%rbp), %rcx
+0x01e: 00                            |  	halt
+                                     |  # end

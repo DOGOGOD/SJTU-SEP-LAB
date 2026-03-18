@@ -1,0 +1,4 @@
+                                     |  # test cmovne
+0x000: 24 67                         |  	cmovne %rsi, %rdi
+0x002: 00                            |  	halt
+                                     |  # end

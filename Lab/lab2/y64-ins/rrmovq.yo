@@ -1,0 +1,5 @@
+                                     |  # test rrmovq
+0x000: 20 03                         |  	rrmovq %rax, %rbx
+0x002: 20 16                         |  	rrmovq %rcx, %rsi
+0x004: 00                            |  	halt
+                                     |  # end

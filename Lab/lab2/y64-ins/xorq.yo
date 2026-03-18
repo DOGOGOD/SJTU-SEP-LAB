@@ -1,0 +1,4 @@
+                                     |  # test xorq
+0x000: 63 67                         |  	xorq %rsi, %rdi
+0x002: 00                            |  	halt
+                                     |  # end

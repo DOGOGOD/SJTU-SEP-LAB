@@ -1,0 +1,5 @@
+                                     |  # nop, nop and halt
+0x000: 10                            |  	nop
+0x001: 10                            |  	nop
+0x002: 00                            |  	halt			# Terminate program
+                                     |  # end

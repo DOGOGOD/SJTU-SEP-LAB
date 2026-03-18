@@ -1,0 +1,48 @@
+                                     |  # Execution begins at address 0
+0x000:                               |  	.pos 0
+0x000: 30 f4 00 08 00 00 00 00 00 00 |  init:	irmovq Stack, %rsp  	# Set up Stack pointer
+0x00a: 30 f5 00 08 00 00 00 00 00 00 |  	irmovq Stack, %rbp  	# Set up base pointer
+0x014: 70 40 00 00 00 00 00 00 00    |  	jmp Main		# Execute main program
+                                     | 
+                                     |  # Array of 4 elements
+0x020:                               |  	.align 8
+0x020: 0d 00 00 00 00 00 00 00       |  array:	.quad 0xd
+0x028: c0 00 00 00 00 00 00 00       |  	.quad 0xc0
+0x030: 00 0b 00 00 00 00 00 00       |  	.quad 0xb00
+0x038: 00 a0 00 00 00 00 00 00       |  	.quad 0xa000
+                                     | 
+0x040: 30 f0 04 00 00 00 00 00 00 00 |  Main:	irmovq $4,%rax
+0x04a: a0 0f                         |  	pushq %rax	# Push 4
+0x04c: 30 f2 20 00 00 00 00 00 00 00 |  	irmovq array,%rdx
+0x056: a0 2f                         |  	pushq %rdx      # Push array
+0x058: 80 62 00 00 00 00 00 00 00    |  	call rSum	# Sum(array, 4)
+0x061: 00                            |  	halt
+                                     | 
+                                     |  #/* $begin rsum-ys */
+                                     |  	# int Sum(int *Start, int Count)
+0x062: a0 5f                         |  rSum:	pushq %rbp
+0x064: 20 45                         |  	rrmovq %rsp,%rbp
+0x066: a0 3f                         |  	pushq %rbx           # Save value of %rbx
+0x068: 50 35 10 00 00 00 00 00 00 00 |  	mrmovq 16(%rbp),%rbx  # Get Start
+0x072: 50 05 18 00 00 00 00 00 00 00 |  	mrmovq 24(%rbp),%rax # Get Count
+0x07c: 62 00                         |  	andq %rax,%rax       # Test value of Count
+0x07e: 71 c3 00 00 00 00 00 00 00    |  	jle L38              # If <= 0, goto zreturn
+0x087: 30 f2 ff ff ff ff ff ff ff ff |  	irmovq $-1,%rdx
+0x091: 60 20                         |  	addq %rdx,%rax       # Count--
+0x093: a0 0f                         |  	pushq %rax           # Push Count
+0x095: 30 f2 08 00 00 00 00 00 00 00 |  	irmovq $8,%rdx
+0x09f: 20 30                         |  	rrmovq %rbx,%rax
+0x0a1: 60 20                         |  	addq %rdx,%rax
+0x0a3: a0 0f                         |  	pushq %rax           # Push Start+1
+0x0a5: 80 62 00 00 00 00 00 00 00    |  	call rSum            # Sum(Start+1, Count-1)
+0x0ae: 50 23 00 00 00 00 00 00 00 00 |  	mrmovq (%rbx),%rdx
+0x0b8: 60 20                         |  	addq %rdx,%rax       # Add *Start
+0x0ba: 70 c5 00 00 00 00 00 00 00    |  	jmp L39              # goto done
+0x0c3: 63 00                         |  L38:	xorq %rax,%rax       # zreturn:
+0x0c5: 50 35 f8 ff ff ff ff ff ff ff |  L39:	mrmovq -8(%rbp),%rbx # done: Restore %rbx
+0x0cf: 20 54                         |  	rrmovq %rbp,%rsp     # Deallocate stack frame
+0x0d1: b0 5f                         |  	popq %rbp            # Restore %rbp
+0x0d3: 90                            |  	ret
+                                     |  #/* $end rsum-ys */
+0x800:                               |  	.pos 0x800
+0x800:                               |  Stack:	# The stack goes here

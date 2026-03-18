@@ -1,0 +1,4 @@
+                                     |  # test addq
+0x000: a0 5f                         |  	pushq %rbp
+0x002: 00                            |  	halt
+                                     |  # end

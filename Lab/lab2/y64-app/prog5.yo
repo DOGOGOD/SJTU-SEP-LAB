@@ -1,0 +1,8 @@
+                                     |  # prog5: Load/use hazard
+0x000: 30 f2 80 00 00 00 00 00 00 00 |    irmovq $128,%rdx
+0x00a: 30 f1 03 00 00 00 00 00 00 00 |    irmovq  $3,%rcx
+0x014: 40 12 00 00 00 00 00 00 00 00 |    rmmovq %rcx, 0(%rdx)
+0x01e: 30 f3 0a 00 00 00 00 00 00 00 |    irmovq  $10,%rbx
+0x028: 50 02 00 00 00 00 00 00 00 00 |    mrmovq 0(%rdx), %rax  # Load %rax
+0x032: 60 30                         |    addq %rbx,%rax        # Use %rax
+0x034: 00                            |    halt

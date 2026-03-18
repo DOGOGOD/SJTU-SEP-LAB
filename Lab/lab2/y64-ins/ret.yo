@@ -1,0 +1,4 @@
+                                     |  # test ret
+0x000: 90                            |  	ret
+0x001: 00                            |  	halt
+                                     |  # end

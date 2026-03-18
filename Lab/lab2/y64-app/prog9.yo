@@ -1,0 +1,9 @@
+                                     |  # Exception handqing
+                                     |  # /* $begin prog9-yo */
+0x000: 63 00                         |     xorq %rax,%rax
+0x002: 74 16 00 00 00 00 00 00 00    |     jne  Target      # Not taken
+0x00b: 30 f0 01 00 00 00 00 00 00 00 |     irmovq $1, %rax  # Fall through
+0x015: 00                            |     halt
+0x016:                               |  Target:
+0x016: ff                            |     .byte 0xFF       # Invalid instruction code
+                                     |  # /* $end prog9-yo */

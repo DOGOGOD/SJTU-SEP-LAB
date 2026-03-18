@@ -1,0 +1,4 @@
+                                     |  # test popq
+0x000: b0 5f                         |  	popq %rbp
+0x002: 00                            |  	halt
+                                     |  # end

@@ -1,0 +1,5 @@
+                                     |  # test jge
+0x000:                               |  Loop:
+0x000: 75 00 00 00 00 00 00 00 00    |  	jge Loop
+0x009: 00                            |  	halt
+                                     |  # end

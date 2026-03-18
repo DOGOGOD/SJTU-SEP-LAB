@@ -1,0 +1,6 @@
+Stopped in 7 steps at PC = 0x19.  Status 'HLT', CC Z=0 S=0 O=0
+Changes to registers:
+%rax:	0x0000000000000000	0x000000000000000d
+%rdx:	0x0000000000000000	0x000000000000000a
+
+Changes to memory:

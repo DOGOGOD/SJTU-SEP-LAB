@@ -1,0 +1,4 @@
+                                     |  # test cmovge
+0x000: 25 03                         |  	cmovge %rax, %rbx
+0x002: 00                            |  	halt
+                                     |  # end

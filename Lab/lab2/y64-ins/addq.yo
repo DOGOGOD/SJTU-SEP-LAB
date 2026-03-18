@@ -1,0 +1,4 @@
+                                     |  # test addq
+0x000: 60 67                         |  	addq %rsi, %rdi
+0x002: 00                            |  	halt
+                                     |  # end

@@ -1,0 +1,53 @@
+                                     |  # Modification of asum code to compute absolute values of entries.
+                                     |  # This version uses a conditional jump
+                                     |  # Execution begins at address 0
+0x000:                               |  	.pos 0
+0x000: 30 f4 00 02 00 00 00 00 00 00 |  init:	irmovq Stack, %rsp  	# Set up Stack pointer
+0x00a: 30 f5 00 02 00 00 00 00 00 00 |  	irmovq Stack, %rbp  	# Set up base pointer
+0x014: 70 40 00 00 00 00 00 00 00    |  	jmp Main		# Execute main program
+                                     | 
+                                     |  # Array of 4 elements
+0x020:                               |  	.align 8
+0x020: 0d 00 00 00 00 00 00 00       |  array:	.quad 0x0000000d
+0x028: 40 ff ff ff ff ff ff ff       |  	.quad -0xc0
+0x030: 00 0b 00 00 00 00 00 00       |  	.quad 0x00000b00
+0x038: 00 60 ff ff ff ff ff ff       |  	.quad -0xa000
+                                     | 
+0x040: 30 f0 04 00 00 00 00 00 00 00 |  Main:	irmovq $4,%rax
+0x04a: a0 0f                         |  	pushq %rax	# Push 4
+0x04c: 30 f2 20 00 00 00 00 00 00 00 |  	irmovq array,%rdx
+0x056: a0 2f                         |  	pushq %rdx      # Push array
+0x058: 80 62 00 00 00 00 00 00 00    |  	call AbsSum	# Sum(array, 4)
+0x061: 00                            |  	halt
+                                     | 
+                                     |  #/* $begin abs-sum-jmp-ys 0 */
+                                     |  	# int AbsSum(int *Start, int Count)
+0x062:                               |  AbsSum:
+0x062: a0 5f                         |  	pushq %rbp
+0x064: 20 45                         |  	rrmovq %rsp,%rbp
+0x066: 50 15 10 00 00 00 00 00 00 00 |  	mrmovq 16(%rbp),%rcx 	# rcx = Start
+0x070: 50 25 18 00 00 00 00 00 00 00 |  	mrmovq 24(%rbp),%rdx	# rdx = Count
+0x07a: 30 f0 00 00 00 00 00 00 00 00 |  	irmovq $0, %rax		# sum = 0
+0x084: 62 22                         |  	andq   %rdx,%rdx
+0x086: 73 d3 00 00 00 00 00 00 00    |  	je     End
+0x08f:                               |  Loop:
+0x08f: 50 61 00 00 00 00 00 00 00 00 |  	mrmovq (%rcx),%rsi      # get x = *Start
+0x099: 30 f7 00 00 00 00 00 00 00 00 |  	irmovq $0,%rdi		# 0
+0x0a3: 61 67                         |  	subq %rsi,%rdi		# -x
+0x0a5: 71 b0 00 00 00 00 00 00 00    |  	jle Pos			# Skip if -x <= 0
+0x0ae: 20 76                         |  	rrmovq %rdi,%rsi	# x = -x
+0x0b0:                               |  Pos:
+0x0b0: 60 60                         |  	addq %rsi,%rax          # add x to sum
+0x0b2: 30 f8 08 00 00 00 00 00 00 00 |  	irmovq $8,%r8          #
+0x0bc: 60 81                         |  	addq %r8,%rcx          # Start++
+0x0be: 30 f3 ff ff ff ff ff ff ff ff |  	irmovq $-1,%rbx	        #
+0x0c8: 60 32                         |  	addq %rbx,%rdx          # Count--
+0x0ca: 74 8f 00 00 00 00 00 00 00    |  	jne    Loop             # Stop when 0
+0x0d3:                               |  End:
+0x0d3: b0 5f                         |  	popq %rbp
+0x0d5: 90                            |  	ret
+                                     |  #/* $end abs-sum-jmp-ys 0 */
+0x200:                               |  	.pos 0x200
+0x200:                               |  Stack:	# The stack goes here
+                                     |  #/* $end code-ysa */
+                                     |  #/* $end code-yso */

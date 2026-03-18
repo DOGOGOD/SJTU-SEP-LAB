@@ -1,0 +1,5 @@
+                                     |  # test jmp
+0x000:                               |  Loop:
+0x000: 70 00 00 00 00 00 00 00 00    |  	jmp Loop
+0x009: 00                            |  	halt
+                                     |  # end

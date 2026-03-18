@@ -1,0 +1,4 @@
+                                     |  # test cmovle
+0x000: 21 67                         |  	cmovle %rsi, %rdi
+0x002: 00                            |  	halt
+                                     |  # end

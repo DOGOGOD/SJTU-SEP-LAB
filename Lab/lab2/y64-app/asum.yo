@@ -1,0 +1,53 @@
+                                     |  #/* $begin code-yso */
+                                     |  #/* $begin code-ysa */
+                                     |  # Execution begins at address 0
+0x000:                               |  	.pos 0
+0x000: 30 f4 00 02 00 00 00 00 00 00 |  init:	irmovq Stack, %rsp  	# Set up stack pointer
+0x00a: 30 f5 00 02 00 00 00 00 00 00 |  	irmovq Stack, %rbp  	# Set up base pointer
+0x014: 80 40 00 00 00 00 00 00 00    |  	call Main		# Execute main program
+0x01d: 00                            |  	halt			# Terminate program
+                                     | 
+                                     |  # Array of 4 elements
+0x020:                               |  	.align 8
+0x020: 0d 00 00 00 00 00 00 00       |  array:	.quad 0xd
+0x028: c0 00 00 00 00 00 00 00       |  	.quad 0xc0
+0x030: 00 0b 00 00 00 00 00 00       |  	.quad 0xb00
+0x038: 00 a0 00 00 00 00 00 00       |  	.quad 0xa000
+                                     | 
+0x040: a0 5f                         |  Main:	pushq %rbp
+0x042: 20 45                         |  	rrmovq %rsp,%rbp
+0x044: 30 f0 04 00 00 00 00 00 00 00 |  	irmovq $4,%rax
+0x04e: a0 0f                         |  	pushq %rax		# Push 4
+0x050: 30 f2 20 00 00 00 00 00 00 00 |  	irmovq array,%rdx
+0x05a: a0 2f                         |  	pushq %rdx      	# Push array
+0x05c: 80 6a 00 00 00 00 00 00 00    |  	call Sum		# Sum(array, 4)
+0x065: 20 54                         |  	rrmovq %rbp,%rsp
+0x067: b0 5f                         |  	popq %rbp
+0x069: 90                            |  	ret
+                                     | 
+                                     |  #/* $begin sum-ys 0 */
+                                     |  	# int Sum(int *Start, int Count)
+0x06a: a0 5f                         |  Sum:	pushq %rbp
+0x06c: 20 45                         |  	rrmovq %rsp,%rbp
+0x06e: 50 15 10 00 00 00 00 00 00 00 |  	mrmovq 16(%rbp),%rcx 	# rcx = Start
+0x078: 50 25 18 00 00 00 00 00 00 00 |  	mrmovq 24(%rbp),%rdx	# rdx = Count
+0x082: 63 00                         |  	xorq %rax,%rax		# sum = 0
+0x084: 62 22                         |  	andq   %rdx,%rdx	# Set condition codes
+0x086: 73 bc 00 00 00 00 00 00 00    |  	je     End
+0x08f: 50 61 00 00 00 00 00 00 00 00 |  Loop:	mrmovq (%rcx),%rsi	# get *Start
+0x099: 60 60                         |  	addq %rsi,%rax          # add to sum
+0x09b: 30 f3 08 00 00 00 00 00 00 00 |  	irmovq $8,%rbx          #
+0x0a5: 60 31                         |  	addq %rbx,%rcx          # Start++
+0x0a7: 30 f3 ff ff ff ff ff ff ff ff |  	irmovq $-1,%rbx	        #
+0x0b1: 60 32                         |  	addq %rbx,%rdx          # Count--
+0x0b3: 74 8f 00 00 00 00 00 00 00    |  	jne    Loop             # Stop when 0
+0x0bc: 20 54                         |  End:	rrmovq %rbp,%rsp
+0x0be: b0 5f                         |  	popq %rbp
+0x0c0: 90                            |  	ret
+                                     |  #/* $end sum-ys 0 */
+                                     | 
+                                     |  # The stack starts here and grows to lower addresses
+0x200:                               |  	.pos 0x200
+0x200:                               |  Stack:
+                                     |  #/* $end code-ysa */
+                                     |  #/* $end code-yso */
