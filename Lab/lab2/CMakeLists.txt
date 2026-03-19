@@ -4,7 +4,9 @@ project(lab2)
 set(CMAKE_CXX_STANDARD 20)
 
 add_compile_options(-Wimplicit-fallthrough -Wswitch -Werror)
-# add_link_options(-static)
+if(WIN32)
+    add_link_options(-static)
+endif()
 
 add_executable(y64sim
     instructions.cpp
