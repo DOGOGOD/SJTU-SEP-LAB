@@ -38,7 +38,7 @@ bool Memory::set_byte(const uint64_t addr, const uint8_t value) {
 }
 
 std::optional<uint64_t> Memory::get_long(const uint64_t addr) const {
-    if (addr >= data.size() || addr + 8 >= data.size()) {
+    if (addr >= data.size() || addr + 8 > data.size()) {
         return std::nullopt;
     }
     uint64_t result = 0;
@@ -49,7 +49,7 @@ std::optional<uint64_t> Memory::get_long(const uint64_t addr) const {
 }
 
 bool Memory::set_long(const uint64_t addr, uint64_t value) {
-    if (addr >= data.size() || addr + 8 >= data.size()) {
+    if (addr >= data.size() || addr + 8 > data.size()) {
         return false;
     }
     for (int i = 0; i < 8; i++) {

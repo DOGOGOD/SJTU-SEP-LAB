@@ -8,8 +8,9 @@ This is a collection of labs for the Software Engineering Practice (SEP) course 
 SEP/
 ├─ README.md
 ├─ Lab/
-│  └─ lab1/  # Lab1: student/course score manager.          
-└─ Lab Init/
+│  ├─ lab1/  # Lab1: student/course score manager.
+|  └─ lab2/  # Lab2: Y86-64 Simulator.         
+└─ Lab Init/ # The Original Starting Files and Instructions for each Lab.
 ```
 
 
